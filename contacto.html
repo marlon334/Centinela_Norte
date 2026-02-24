@@ -5,10 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto | Vigilancia Elite</title>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons & Styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/global.css">
 </head>
 
@@ -17,43 +22,108 @@
   <header id="header-container"></header>
 
   <main>
-    <section id="contacto" class="contact">
+    <!-- PAGE HEADER -->
+    <section class="page-header"
+      style="background: linear-gradient(to bottom, #000, var(--bg-dark)); padding-top: 180px; padding-bottom: 60px; text-align: center;">
       <div class="container">
-        <div class="contact-header">
-          <h2>Hable con un experto</h2>
-          <p class="subtext">Solicite una auditoría de seguridad gratuita para su propiedad o negocio.</p>
-        </div>
+        <span class="tag animate-on-scroll">Canales de Atención</span>
+        <h1 class="animate-on-scroll">Hablemos de su Seguridad</h1>
+        <p class="subtext animate-on-scroll" style="margin: 1.5rem auto;">Estamos listos para desplegar la mejor
+          estrategia de protección para usted o su negocio.</p>
+      </div>
+    </section>
 
-        <div class="contact-grid">
-          <div class="contact-info">
-            <div class="info-box">
-              <div class="info-icon"><i class="fas fa-phone"></i></div>
-              <div class="info-text">
-                <span>Llámenos</span>
-                <strong>+52 (55) 1234-5678</strong>
+    <!-- CONTACT MAP (& INFO) -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="glass-card animate-on-scroll" style="padding: 4rem;">
+          <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem;">
+            <div class="contact-info">
+              <h2>Información de Contacto</h2>
+              <p class="subtext" style="margin-bottom: 3rem;">Visite nuestras oficinas centrales o contáctenos por
+                medios digitales.</p>
+
+              <div class="info-list" style="display: grid; gap: 2rem;">
+                <div class="glass-card"
+                  style="padding: 1.5rem; display: flex; gap: 1.5rem; align-items: center; border: none; background: rgba(255,255,255,0.02);">
+                  <div
+                    style="width: 50px; height: 50px; border-radius: 12px; background: rgba(251,214,0,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.2rem;">
+                    <i class="fas fa-phone-volume"></i>
+                  </div>
+                  <div>
+                    <span
+                      style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Teléfono
+                      Especializado</span>
+                    <strong style="font-size: 1.1rem; color: #fff;">+52 (55) 1234-5678</strong>
+                  </div>
+                </div>
+                <div class="glass-card"
+                  style="padding: 1.5rem; display: flex; gap: 1.5rem; align-items: center; border: none; background: rgba(255,255,255,0.02);">
+                  <div
+                    style="width: 50px; height: 50px; border-radius: 12px; background: rgba(251,214,0,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.2rem;">
+                    <i class="fas fa-envelope-open-text"></i>
+                  </div>
+                  <div>
+                    <span
+                      style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Envío
+                      de Propuestas</span>
+                    <strong style="font-size: 1.1rem; color: #fff;">contacto@vigilanciaelite.com</strong>
+                  </div>
+                </div>
+                <div class="glass-card"
+                  style="padding: 1.5rem; display: flex; gap: 1.5rem; align-items: center; border: none; background: rgba(255,255,255,0.02);">
+                  <div
+                    style="width: 50px; height: 50px; border-radius: 12px; background: rgba(251,214,0,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.2rem;">
+                    <i class="fas fa-location-dot"></i>
+                  </div>
+                  <div>
+                    <span
+                      style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Cuartel
+                      General</span>
+                    <strong style="font-size: 1.1rem; color: #fff;">Distrito de Negocios, CDMX</strong>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="info-box">
-              <div class="info-icon"><i class="fas fa-envelope"></i></div>
-              <div class="info-text">
-                <span>Email</span>
-                <strong>contacto@vigilanciaelite.com</strong>
+
+            <form class="contact-form" style="display: grid; gap: 1.5rem;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div>
+                  <label
+                    style="display: block; margin-bottom: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Nombre
+                    Completo</label>
+                  <input type="text" placeholder="Ej. Juan Pérez"
+                    style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: #fff;">
+                </div>
+                <div>
+                  <label
+                    style="display: block; margin-bottom: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Correo
+                    Electrónico</label>
+                  <input type="email" placeholder="juan@ejemplo.com"
+                    style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: #fff;">
+                </div>
               </div>
-            </div>
-            <div class="info-box">
-              <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div class="info-text">
-                <span>Ubicación</span>
-                <strong>Distrito de Negocios, CDMX</strong>
+              <div>
+                <label style="display: block; margin-bottom: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Tipo
+                  de Requerimiento</label>
+                <select
+                  style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: #fff;">
+                  <option>Auditoría de Seguridad</option>
+                  <option>Contratación de Guardias</option>
+                  <option>Protección VIP</option>
+                  <option>Otros</option>
+                </select>
               </div>
-            </div>
+              <div>
+                <label
+                  style="display: block; margin-bottom: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Mensaje</label>
+                <textarea placeholder="Describa brevemente sus necesidades..."
+                  style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: #fff; min-height: 150px;"></textarea>
+              </div>
+              <button type="submit" class="btn-yellow"
+                style="width: 100%; justify-content: center; padding: 1.25rem;">ENVIAR SOLICITUD DE AUDITORÍA</button>
+            </form>
           </div>
-          <form class="contact-form">
-            <input type="text" placeholder="Nombre completo">
-            <input type="email" placeholder="Correo electrónico">
-            <textarea placeholder="¿En qué podemos ayudarle?" class="full"></textarea>
-            <button type="submit" class="btn-yellow full">ENVIAR MENSAJE</button>
-          </form>
         </div>
       </div>
     </section>

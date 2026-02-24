@@ -5,10 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nosotros | Vigilancia Elite</title>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons & Styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/global.css">
 </head>
 
@@ -17,38 +22,68 @@
   <header id="header-container"></header>
 
   <main>
-    <section class="about">
+    <!-- PAGE HEADER -->
+    <section class="page-header"
+      style="background: linear-gradient(to bottom, #000, var(--bg-dark)); padding-top: 180px; padding-bottom: 60px; text-align: center;">
       <div class="container">
-        <div class="about-grid">
-          <div class="about-img-box">
-            <img src="img/security_monitoring_center.png" alt="Vigilancia">
-            <div class="exp-badge">
-              <strong>20+</strong>
-              <span>AÑOS DE EXPERIENCIA</span>
-            </div>
-          </div>
-          <div class="about-content">
-            <h2>Nuestra Historia</h2>
-            <p>Comprometidos con la excelencia, disciplina y profesionalismo. Somos una empresa especializada en
-              capacitación y formación de personal de seguridad privada.</p>
+        <span class="tag animate-on-scroll">Sobre Nosotros</span>
+        <h1 class="animate-on-scroll" style="font-size: clamp(3rem, 8vw, 4rem);">Misión & Trayectoria</h1>
+        <p class="subtext animate-on-scroll" style="margin: 1.5rem auto;">Más de dos décadas proyectando autoridad y
+          confianza en el sector de la seguridad privada.</p>
+      </div>
+    </section>
 
-            <div class="features">
-              <div class="feature-item">
-                <i class="fas fa-check-circle"></i>
-                <div>
-                  <span>Disciplina</span>
-                  <p>Valores fundamentales en cada guardia.</p>
-                </div>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-check-circle"></i>
-                <div>
-                  <span>Excelencia</span>
-                  <p>Formación táctica de primer nivel.</p>
-                </div>
+    <!-- CONTENT -->
+    <section class="about-detail">
+      <div class="container">
+        <div class="about-grid grid-2"
+          style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+          <div class="about-img animate-on-scroll">
+            <div style="position: relative; border-radius: 20px; overflow: hidden; border: 1px solid var(--border);">
+              <img src="img/Seguridad.jpg" alt="Vigilancia" style="width: 100%; display: block;">
+              <div class="glass-card"
+                style="position: absolute; bottom: 20px; left: 20px; padding: 1.5rem; border-left: 4px solid var(--accent);">
+                <h3 style="font-size: 2rem;">20+</h3>
+                <p style="font-size: 0.8rem; text-transform: uppercase; font-weight: 800;">Años de Historia</p>
               </div>
             </div>
           </div>
+          <div class="about-content animate-on-scroll">
+            <h2>Nuestra Historia</h2>
+            <p>Fundada con el firme propósito de elevar los estándares de protección en la región, Vigilancia Elite
+              nació como una respuesta a la necesidad de seguridad profesional, ética y eficiente.</p>
+            <p>A lo largo de los años, hemos evolucionado de una agencia local a un referente nacional, integrando las
+              mejores prácticas internacionales y tecnología de vanguardia en cada uno de nuestros procesos.</p>
+
+            <div class="values-grid"
+              style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem;">
+              <div class="glass-card" style="padding: 1.5rem;">
+                <i class="fas fa-microchip" style="color: var(--accent); margin-bottom: 1rem;"></i>
+                <h4 style="color: #fff; margin-bottom: 0.5rem;">Innovación</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Sistemas de IA aplicados a la vigilancia
+                  preventiva.</p>
+              </div>
+              <div class="glass-card" style="padding: 1.5rem;">
+                <i class="fas fa-scale-balanced" style="color: var(--accent); margin-bottom: 1rem;"></i>
+                <h4 style="color: #fff; margin-bottom: 0.5rem;">Integridad</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Transparencia total y valores inquebrantables.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM/VALUES STATEMENT -->
+    <section class="values"
+      style="background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="container">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+          <h2 class="animate-on-scroll">Comprometidos con la Excelencia</h2>
+          <p class="subtext animate-on-scroll" style="margin: 2rem auto;">Nuestro personal no solo son guardias; son
+            profesionales entrenados bajo una doctrina de disciplina, respeto y respuesta táctica inmediata.</p>
+          <a href="contacto.html" class="btn-yellow animate-on-scroll">Conocer nuestro proceso</a>
         </div>
       </div>
     </section>
