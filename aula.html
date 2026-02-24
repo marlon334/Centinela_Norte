@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redirigiendo al Aula Virtual - Centinelas del Norte</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 800px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .logo {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .logo-icon {
+    background-color: #3498db;
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  .redirect-box {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 30px 0;
+    border-left: 5px solid #3498db;
+  }
+
+  .redirect-url {
+    font-family: monospace;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+    word-break: break-all;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .redirect-url i {
+    color: #3498db;
+  }
+
+  .countdown {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #2ecc71;
+    margin: 20px 0;
+    text-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+  }
+
+  .buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 15px 35px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(52, 152, 219, 0.4);
+  }
+
+  .btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+  }
+
+  .loading-bar {
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    margin: 30px 0;
+    overflow: hidden;
+  }
+
+  .loading-progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    border-radius: 3px;
+    animation: loading 5s linear forwards;
+  }
+
+  .info-box {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    opacity: 0.8;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes loading {
+    to { width: 100%; }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 25px;
+    }
+    
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .countdown {
+      font-size: 3rem;
+    }
+    
+    .buttons {
+      flex-direction: column;
+    }
+    
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logo">
+    <div class="logo-icon">
+      <i class="fas fa-shield-alt"></i>
+    </div>
+    <h1>CENTINELAS DEL NORTE</h1>
+  </div>
+  
+  <p class="subtitle">Estás siendo redirigido a nuestra plataforma de formación virtual</p>
+  
+  <div class="redirect-box">
+    <p>Plataforma de Aula Virtual:</p>
+   
+    <p>Serás redirigido automáticamente en:</p>
+    <div class="countdown" id="countdown">5</div>
+  </div>
+  
+  <div class="loading-bar">
+    <div class="loading-progress"></div>
+  </div>
+  
+  <div class="buttons">
+    <a href="https://centineladelnorte.com.ec/mentoria/login/index.php/" class="btn btn-primary" id="redirectBtn">
+      <i class="fas fa-external-link-alt"></i>
+      Ir ahora al Aula Virtual
+    </a>
+    
+    <a href="javascript:history.back()" class="btn btn-secondary">
+      <i class="fas fa-arrow-left"></i>
+      Volver atrás
+    </a>
+  </div>
+  
+  <div class="info-box">
+    <div class="info-item">
+      <i class="fas fa-info-circle"></i>
+      Si la redirección no funciona, haz clic en el botón "Ir ahora al Aula Virtual"
+    </div>
+    <div class="info-item">
+      <i class="fas fa-lock"></i>
+      Estás accediendo a un sitio seguro de formación
+    </div>
+  </div>
+</div>
+
+<script>
+  // Redirección automática después de 5 segundos
+  let countdown = 5;
+  const countdownElement = document.getElementById('countdown');
+  const redirectBtn = document.getElementById('redirectBtn');
+  
+  const countdownInterval = setInterval(() => {
+    countdown--;
+    countdownElement.textContent = countdown;
+    
+    if (countdown <= 0) {
+      clearInterval(countdownInterval);
+      window.location.href = 'https://centineladelnorte.com.ec/mentoria/login/index.php/';
+    }
+  }, 1000);
+  
+  // También redirigir al hacer clic en el botón
+  redirectBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    // Agregar una animación de clic
+    this.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      window.location.href = 'https://centineladelnorte.com.ec/mentoria/login/index.php/';
+    }, 300);
+  });
+  
+  // Detectar si estamos en un dispositivo móvil
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (isMobile) {
+    // En móviles, redirigir más rápido
+    setTimeout(() => {
+      window.location.href = 'https://centineladelnorte.com.ec/mentoria/login/index.php/';
+    }, 3000);
+  }
+</script>
+
+</body>
+</html>

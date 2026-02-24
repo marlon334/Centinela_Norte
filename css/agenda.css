@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: white;
+}
+
+/* HEADER */
+header {
+  background: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: yellow;
+}
+
+.logo img {
+  width: 40px;
+}
+
+/* CONTENIDO */
+.contenido {
+  max-width: 600px;
+  margin: auto;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+h1 {
+  color: yellow;
+}
+
+/* FORM */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+input, select {
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  background: yellow;
+  color: black;
+  padding: 14px;
+  border: none;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: orange;
+}
+
+/* FOOTER */
+footer {
+  background: #000;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  color: #aaa;
+}

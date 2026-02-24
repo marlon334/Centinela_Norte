@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: white;
+}
+
+/* HEADER */
+header {
+  background: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: yellow;
+}
+
+.logo img {
+  width: 40px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+/* CONTENIDO */
+.contenido {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+h1 {
+  color: yellow;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* TARJETAS */
+.cards {
+  display: grid;
+  gap: 25px;
+}
+
+.card {
+  background: #1c1c1c;
+  padding: 25px;
+  border-radius: 10px;
+  border-left: 5px solid yellow;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* FOOTER */
+footer {
+  background: #000;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  color: #aaa;
+}
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(3,1fr);
+  }
+}
