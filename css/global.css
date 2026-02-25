@@ -141,6 +141,69 @@ nav ul li a.active {
     color: var(--tomato);
 }
 
+/* Dropdown Curtain Effect */
+.dropdown {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--navy);
+    min-width: 220px;
+    list-style: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    opacity: 0;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 20px 40px rgba(0, 33, 71, 0.3);
+    z-index: 1001;
+    border-top: 3px solid var(--tomato);
+}
+
+.dropdown:hover .dropdown-content {
+    max-height: 400px;
+    opacity: 1;
+    margin-top: 0.5rem;
+}
+
+.dropdown-content li {
+    width: 100%;
+}
+
+.dropdown-content li a {
+    color: #fff !important;
+    padding: 1.2rem 2rem;
+    display: block;
+    text-transform: none !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.dropdown-content li a:hover {
+    background: rgba(255, 99, 71, 0.1);
+    color: var(--tomato) !important;
+    padding-left: 2.2rem;
+}
+
+header:not(.scrolled) .dropdown-content {
+    background: var(--navy);
+}
+
+header.scrolled .dropdown-content {
+    background: #001a38;
+}
+
 /* Buttons */
 .btn-yellow {
     background: var(--tomato);
