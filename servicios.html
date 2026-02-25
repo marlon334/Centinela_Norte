@@ -81,6 +81,94 @@
       </div>
     </section>
 
+    <!-- INTERACTIVE AI CAR RECOGNIZER -->
+    <section class="ai-demo" style="padding: 100px 0; background: var(--navy); color: #fff; overflow: hidden;">
+      <div class="container">
+        <div class="section-header" style="text-align: center; margin-bottom: 5rem;">
+          <span class="tag" style="background: var(--tomato); color: #fff;">Tecnología Propietaria</span>
+          <h2 style="color: #fff; border-color: var(--tomato);">Reconocimiento de Vehículos (IA)</h2>
+          <p class="subtext" style="color: rgba(255,255,255,0.7); margin: 0 auto;">Nuestro sistema de visión artificial
+            identifica modelos, placas y comportamiento sospechoso en tiempo real.</p>
+        </div>
+
+        <div class="ai-case-study"
+          style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center;">
+          <!-- Simulation Area -->
+          <div class="scanner-box glass-card"
+            style="padding: 2rem; border: 1px solid rgba(255,255,255,0.1); position: relative; background: #000; height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+            <div class="scan-line"
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: #4ade80; box-shadow: 0 0 15px #4ade80; z-index: 5; animation: scanMove 4s infinite linear;">
+            </div>
+            <div
+              style="position: relative; width: 100%; height: 100%; background: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800') center/cover; opacity: 0.6; border-radius: 10px;">
+            </div>
+
+            <!-- AI Overlays -->
+            <div
+              style="position: absolute; top: 20%; left: 30%; border: 2px solid #4ade80; width: 40%; height: 50%; box-shadow: 0 0 20px rgba(74, 222, 128, 0.3);">
+              <div
+                style="position: absolute; top: -25px; left: 0; background: #4ade80; color: #000; font-size: 0.7rem; padding: 2px 8px; font-weight: 900; text-transform: uppercase;">
+                Vehicle Detected [ID: 9942]</div>
+            </div>
+            <div
+              style="position: absolute; bottom: 35%; right: 35%; border: 1px dashed #ff6347; width: 15%; height: 10%; background: rgba(255, 99, 71, 0.1);">
+              <div
+                style="position: absolute; bottom: -20px; right: 0; color: #ff6347; font-size: 0.6rem; font-weight: 900;">
+                PLATE: CN-4427</div>
+            </div>
+          </div>
+
+          <!-- Data Panel -->
+          <div class="ai-stats" style="display: grid; gap: 1.5rem;">
+            <div class="glass-card" style="padding: 1.5rem; border-left: 4px solid #4ade80;">
+              <div
+                style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; letter-spacing: 1px;">
+                Estado del Sistema</div>
+              <div style="font-size: 1.2rem; font-weight: 800; color: #4ade80;"><i class="fas fa-satellite-dish"></i>
+                ESCANEANDO ACTIVAMENTE...</div>
+            </div>
+            <div class="glass-card" style="padding: 1.5rem; background: rgba(255,255,255,0.02); border: none;">
+              <h4 style="color: #fff; margin-bottom: 1rem;">Métricas de Análisis</h4>
+              <div style="display: grid; gap: 1rem;">
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem;">
+                  <span style="color: var(--text-muted);">Confianza Modelo:</span>
+                  <span style="color: #4ade80; font-weight: 800;">99.8%</span>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem;">
+                  <span style="color: var(--text-muted);">Tiempo Respuesta:</span>
+                  <span style="color: #fff;">14ms</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">Registro de Placas:</span>
+                  <span style="color: #fff;">Base de Datos Local</span>
+                </div>
+              </div>
+            </div>
+            <button class="btn-yellow" style="margin-top: 1rem; justify-content: center;">SOLICITAR DEMO
+              TÉCNICA</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      @keyframes scanMove {
+        0% {
+          top: 0%;
+        }
+
+        50% {
+          top: 100%;
+        }
+
+        100% {
+          top: 0%;
+        }
+      }
+    </style>
+
     <!-- CTA SECTION -->
     <section class="cta-banner" style="margin: 4rem 0;">
       <div class="container">

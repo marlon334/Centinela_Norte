@@ -15,6 +15,9 @@
   <!-- Icons & Styles -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/global.css">
+
+  <!-- Security: Google reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -67,7 +70,7 @@
                     <span
                       style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Envío
                       de Propuestas</span>
-                    <strong style="font-size: 1.1rem; color: #fff;">contacto@vigilanciaelite.com</strong>
+                    <strong style="font-size: 1.1rem; color: #fff;">contacto@centineladelnorte.com.ec</strong>
                   </div>
                 </div>
                 <div class="glass-card"
@@ -86,43 +89,95 @@
               </div>
             </div>
 
-            <form class="contact-form" style="display: grid; gap: 1.5rem;">
+            <!-- Formspree Integration for monitoreo@centineladelnorte.com.ec -->
+            <form action="https://formspree.io/f/monitoreo@centineladelnorte.com.ec" method="POST" class="contact-form"
+              id="secure-form" style="display: grid; gap: 1.5rem;">
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                 <div>
                   <label
                     style="display: block; margin-bottom: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Nombre
                     Completo</label>
-                  <input type="text" placeholder="Ej. Juan Pérez"
+                  <input type="text" name="name" required placeholder="Ej. Juan Pérez"
                     style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: #fff;">
                 </div>
                 <div>
                   <label
                     style="display: block; margin-bottom: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Correo
                     Electrónico</label>
-                  <input type="email" placeholder="juan@ejemplo.com"
+                  <input type="email" name="email" required placeholder="juan@ejemplo.com"
                     style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: #fff;">
                 </div>
               </div>
               <div>
                 <label style="display: block; margin-bottom: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Tipo
                   de Requerimiento</label>
-                <select
+                <select name="subject"
                   style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: #fff;">
-                  <option>Auditoría de Seguridad</option>
-                  <option>Contratación de Guardias</option>
-                  <option>Protección VIP</option>
-                  <option>Otros</option>
+                  <option value="Auditoría">Auditoría de Seguridad</option>
+                  <option value="Contratación">Contratación de Guardias</option>
+                  <option value="VIP">Protección VIP</option>
+                  <option value="Otros">Otros</option>
                 </select>
               </div>
               <div>
                 <label
                   style="display: block; margin-bottom: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">Mensaje</label>
-                <textarea placeholder="Describa brevemente sus necesidades..."
+                <textarea name="message" required placeholder="Describa brevemente sus necesidades..."
                   style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: #fff; min-height: 150px;"></textarea>
               </div>
-              <button type="submit" class="btn-yellow"
-                style="width: 100%; justify-content: center; padding: 1.25rem;">ENVIAR SOLICITUD DE AUDITORÍA</button>
+
+              <!-- Secure Human Validation (Custom Fingerprint Style) -->
+              <div id="ai-validation"
+                style="padding: 1.5rem; background: rgba(255, 99, 71, 0.05); border: 1px solid rgba(255, 99, 71, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <div id="scan-icon"
+                    style="width: 45px; height: 45px; border-radius: 50%; background: var(--tomato); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; transition: all 0.5s ease;">
+                    <i class="fas fa-fingerprint"></i>
+                  </div>
+                  <div>
+                    <span style="display: block; font-size: 0.9rem; font-weight: 800; color: #fff;">Validación
+                      Biométrica</span>
+                    <span id="scan-status" style="font-size: 0.75rem; color: var(--text-muted);">Confirmar identidad
+                      para enviar</span>
+                  </div>
+                </div>
+                <div class="checkbox-wrapper" style="position: relative;">
+                  <input type="checkbox" id="biometric-check" required
+                    style="width: 30px; height: 30px; cursor: pointer; accent-color: #4ade80;">
+                </div>
+              </div>
+
+              <button type="submit" id="submit-btn" class="btn-yellow" disabled
+                style="width: 100%; justify-content: center; padding: 1.25rem; opacity: 0.5; transition: all 0.3s ease;">ENVIAR
+                SOLICITUD DE AUDITORÍA</button>
             </form>
+
+            <script>
+              const check = document.getElementById('biometric-check');
+              const btn = document.getElementById('submit-btn');
+              const stat = document.getElementById('scan-status');
+              const icon = document.getElementById('scan-icon');
+
+              check.addEventListener('change', function () {
+                if (this.checked) {
+                  btn.disabled = false;
+                  btn.style.opacity = '1';
+                  stat.innerText = 'Identidad Verificada';
+                  stat.style.color = '#4ade80';
+                  icon.style.background = '#4ade80';
+                  icon.innerHTML = '<i class="fas fa-check"></i>';
+                  icon.style.boxShadow = '0 0 20px rgba(74, 222, 128, 0.4)';
+                } else {
+                  btn.disabled = true;
+                  btn.style.opacity = '0.5';
+                  stat.innerText = 'Confirmar identidad para enviar';
+                  stat.style.color = 'var(--text-muted)';
+                  icon.style.background = 'var(--tomato)';
+                  icon.innerHTML = '<i class="fas fa-fingerprint"></i>';
+                  icon.style.boxShadow = 'none';
+                }
+              });
+            </script>
           </div>
         </div>
 
