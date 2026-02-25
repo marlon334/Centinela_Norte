@@ -1,6 +1,6 @@
 /**
- * Vigilancia Elite - Core Engine
- * Handles component loading, animations, and UI interactions.
+ * Centinelas del Norte - Core Engine
+ * Handles component loading and UI interactions.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,12 +17,15 @@ async function initLayout() {
 
     highlightActiveLink();
     initMobileMenu();
+
+    // Trigger animations immediately
+    revealImmediately();
 }
 
 async function loadComponent(selector, url) {
     const el = document.querySelector(selector);
     if (!el) return;
-    
+
     try {
         const response = await fetch(url);
         const html = await response.text();
@@ -44,7 +47,7 @@ function highlightActiveLink() {
 
 function initScrollEffects() {
     const header = document.querySelector('header');
-    
+
     window.addEventListener('scroll', () => {
         // Sticky Header Effect
         if (window.scrollY > 50) {
@@ -52,29 +55,22 @@ function initScrollEffects() {
         } else {
             header?.classList.remove('scrolled');
         }
-
-        // Simple Reveal Animation
-        revealOnScroll();
     });
 }
 
-function revealOnScroll() {
+function revealImmediately() {
     const reveals = document.querySelectorAll('.animate-on-scroll');
     reveals.forEach(el => {
-        const windowHeight = window.innerHeight;
-        const elementTop = el.getBoundingClientRect().top;
-        const elementVisible = 150;
-        if (elementTop < windowHeight - elementVisible) {
-            el.classList.add('visible');
-        }
+        el.classList.add('visible');
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
     });
 }
 
 function initMobileMenu() {
-    // This will be called after header is loaded
     const toggle = document.querySelector('.mobile-toggle');
     const nav = document.querySelector('nav');
-    
+
     if (toggle && nav) {
         toggle.addEventListener('click', () => {
             nav.classList.toggle('mobile-active');
