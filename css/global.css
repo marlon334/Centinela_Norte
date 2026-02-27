@@ -255,10 +255,10 @@ section {
 
 /* Hero Customization */
 .hero {
-    min-height: 100vh;
+    min-height: 60vh;
     display: flex;
     align-items: center;
-    padding-top: 100px;
+    padding: 60px 0;
     background: linear-gradient(135deg, #fff 0%, #e1e8f0 100%);
 }
 
@@ -270,7 +270,7 @@ section {
     background: linear-gradient(rgba(0, 33, 71, 0.85), rgba(0, 33, 71, 0.4)), url('../img/security_guard_hero.png');
     background-size: cover;
     background-position: center;
-    min-height: 650px;
+    min-height: 450px;
     display: flex;
     align-items: center;
     box-shadow: 0 30px 60px rgba(0, 33, 71, 0.2);
@@ -278,7 +278,7 @@ section {
 
 .hero-content {
     max-width: 650px;
-    padding: 5rem;
+    padding: 3rem;
     z-index: 2;
     color: #fff;
 }
