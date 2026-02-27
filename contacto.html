@@ -56,51 +56,7 @@
                   <i class="fas fa-lock"></i> DATOS PROTEGIDOS
                 </div>
               </div>
-              <p class="subtext" style="margin-bottom: 3rem;">Canales oficiales para la gestión de su seguridad
-                institucional. El tratamiento de su información está blindado bajo estándares LOPDP.</p>
 
-
-              <div class="info-list" style="display: grid; gap: 2rem;">
-                <div class="glass-card"
-                  style="padding: 1.5rem; display: flex; gap: 1.5rem; align-items: center; border: none; background: rgba(255,255,255,0.02);">
-                  <div
-                    style="width: 50px; height: 50px; border-radius: 12px; background: rgba(251,214,0,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.2rem;">
-                    <i class="fas fa-phone-volume"></i>
-                  </div>
-                  <div>
-                    <span
-                      style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Teléfono
-                      Especializado</span>
-                    <strong style="font-size: 1.1rem; color: #fff;">062-250-293 / 0994286600 / 0982313617</strong>
-                  </div>
-                </div>
-                <div class="glass-card"
-                  style="padding: 1.5rem; display: flex; gap: 1.5rem; align-items: center; border: none; background: rgba(255,255,255,0.02);">
-                  <div
-                    style="width: 50px; height: 50px; border-radius: 12px; background: rgba(251,214,0,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.2rem;">
-                    <i class="fas fa-envelope-open-text"></i>
-                  </div>
-                  <div>
-                    <span
-                      style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Envío
-                      de Propuestas</span>
-                    <strong style="font-size: 1.1rem; color: #fff;">davidtulcan@centineladelnorte.com.ec</strong>
-                  </div>
-                </div>
-                <div class="glass-card"
-                  style="padding: 1.5rem; display: flex; gap: 1.5rem; align-items: center; border: none; background: rgba(255,255,255,0.02);">
-                  <div
-                    style="width: 50px; height: 50px; border-radius: 12px; background: rgba(251,214,0,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.2rem;">
-                    <i class="fas fa-location-dot"></i>
-                  </div>
-                  <div>
-                    <span
-                      style="display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Cuartel
-                      General (Matriz)</span>
-                    <strong style="font-size: 1.1rem; color: #fff;">Carchi- Tulcán, Los Álamos y Los Robles</strong>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <!-- Formspree Integration for davidtulcan@centineladelnorte.com.ec -->
@@ -140,26 +96,10 @@
                   style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: #fff; min-height: 150px;"></textarea>
               </div>
 
-              <!-- Secure Human Validation (Captcha Style) -->
-              <div id="ai-validation"
-                style="padding: 1.5rem; background: rgba(0, 33, 71, 0.3); border: 2px solid rgba(255,255,255,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: space-between;">
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                  <div id="scan-icon"
-                    style="width: 45px; height: 45px; border-radius: 50%; background: var(--tomato); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; transition: all 0.5s ease;">
-                    <i class="fas fa-fingerprint"></i>
-                  </div>
-                  <div>
-                    <span style="display: block; font-size: 0.9rem; font-weight: 800; color: #fff;">Human Validation
-                      Captcha</span>
-                    <span id="scan-status"
-                      style="font-size: 0.75rem; color: var(--text-muted); font-family: monospace;">AWAITING SECURITY
-                      SCAN...</span>
-                  </div>
-                </div>
-                <div class="checkbox-wrapper" style="position: relative;">
-                  <input type="checkbox" id="biometric-check" required
-                    style="width: 32px; height: 32px; cursor: pointer; accent-color: #4ade80; border: 2px solid var(--tomato);">
-                </div>
+              <!-- Google reCAPTCHA Validation -->
+              <div style="display: flex; justify-content: center; margin: 1rem 0;">
+                <div class="g-recaptcha" data-sitekey="6LfXXHksAAAAAPJ0kzKY0_NUVb2iZhctk3EgXaOB"
+                  data-callback="onCaptchaSuccess" data-expired-callback="onCaptchaExpired"></div>
               </div>
 
               <button type="submit" id="submit-btn" class="btn-yellow" disabled
@@ -168,30 +108,17 @@
             </form>
 
             <script>
-              const check = document.getElementById('biometric-check');
               const btn = document.getElementById('submit-btn');
-              const stat = document.getElementById('scan-status');
-              const icon = document.getElementById('scan-icon');
 
-              check.addEventListener('change', function () {
-                if (this.checked) {
-                  btn.disabled = false;
-                  btn.style.opacity = '1';
-                  stat.innerText = 'Identidad Verificada';
-                  stat.style.color = '#4ade80';
-                  icon.style.background = '#4ade80';
-                  icon.innerHTML = '<i class="fas fa-check"></i>';
-                  icon.style.boxShadow = '0 0 20px rgba(74, 222, 128, 0.4)';
-                } else {
-                  btn.disabled = true;
-                  btn.style.opacity = '0.5';
-                  stat.innerText = 'Confirmar identidad para enviar';
-                  stat.style.color = 'var(--text-muted)';
-                  icon.style.background = 'var(--tomato)';
-                  icon.innerHTML = '<i class="fas fa-fingerprint"></i>';
-                  icon.style.boxShadow = 'none';
-                }
-              });
+              function onCaptchaSuccess() {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+              }
+
+              function onCaptchaExpired() {
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+              }
             </script>
           </div>
         </div>
