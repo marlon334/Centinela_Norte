@@ -1,2 +1,113 @@
 /* Page specific styles for index.html */
-/* Most styles are handled in global.css to ensure consistency */
+
+.video-section {
+    padding: 0;
+    margin-top: 0;
+    position: relative;
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #000;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 33, 71, 0.8) 0%, rgba(0, 33, 71, 0.2) 100%);
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+
+.video-content {
+    max-width: 700px;
+    color: #fff;
+}
+
+.video-content h2 {
+    color: #fff;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    border: none;
+    padding: 0;
+}
+
+.video-content h2::before {
+    display: none;
+}
+
+.video-content p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 3rem;
+    max-width: 600px;
+}
+
+.play-btn {
+    background: var(--tomato);
+    color: #fff;
+    border: none;
+    padding: 1.25rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: var(--transition);
+    box-shadow: 0 10px 30px rgba(255, 99, 71, 0.4);
+}
+
+.play-btn i {
+    font-size: 1.2rem;
+}
+
+.play-btn:hover {
+    background: #fff;
+    color: var(--navy);
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .video-section {
+        height: 70vh;
+    }
+
+    .video-overlay {
+        background: rgba(0, 33, 71, 0.6);
+        text-align: center;
+        justify-content: center;
+    }
+
+    .video-content {
+        margin: 0 auto;
+    }
+
+    .play-btn {
+        margin: 0 auto;
+    }
+}

@@ -96,10 +96,11 @@ body:not(.home-page) header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-header.scrolled .logo,
 header.scrolled nav ul li a,
 body:not(.home-page) header nav ul li a,
-body:not(.home-page) header .logo {
+body:not(.home-page) header .logo,
+body.home-page header nav ul li a,
+body.home-page header .logo {
     color: #fff !important;
 }
 
@@ -141,6 +142,7 @@ nav ul li a {
 nav ul li a:hover,
 nav ul li a.active {
     color: var(--tomato) !important;
+    text-shadow: none;
 }
 
 /* Dropdown Curtain Effect */
