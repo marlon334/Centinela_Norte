@@ -123,7 +123,7 @@ body.home-page header .logo {
     transition: var(--transition);
 }
 
-nav ul {
+nav>ul {
     display: flex;
     gap: 2rem;
     list-style: none;
@@ -170,6 +170,9 @@ nav ul li a.active {
     box-shadow: 0 20px 40px rgba(0, 33, 71, 0.3);
     z-index: 1001;
     border-top: 3px solid var(--tomato);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 
 .dropdown:hover .dropdown-content {
