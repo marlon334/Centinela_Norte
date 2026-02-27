@@ -85,15 +85,22 @@ header {
     background: transparent;
 }
 
-header.scrolled {
-    background: var(--navy);
+/* Glass effect when scrolled or on subpages */
+header.scrolled,
+body:not(.home-page) header {
+    background: rgba(0, 33, 71, 0.8) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     padding: 0.8rem 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 header.scrolled .logo,
-header.scrolled nav ul li a {
-    color: #fff;
+header.scrolled nav ul li a,
+body:not(.home-page) header nav ul li a,
+body:not(.home-page) header .logo {
+    color: #fff !important;
 }
 
 .header-inner {
@@ -107,18 +114,12 @@ header.scrolled nav ul li a {
     align-items: center;
     gap: 0.75rem;
     font-weight: 800;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--navy);
     text-decoration: none;
-}
-
-.logo-icon {
-    width: 36px;
-    height: 36px;
-    background: var(--tomato);
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition: var(--transition);
 }
 
 nav ul {
@@ -134,11 +135,12 @@ nav ul li a {
     font-size: 0.9rem;
     transition: var(--transition);
     text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 nav ul li a:hover,
 nav ul li a.active {
-    color: var(--tomato);
+    color: var(--tomato) !important;
 }
 
 /* Dropdown Curtain Effect */
@@ -336,24 +338,92 @@ section {
     font-size: 1.5rem;
 }
 
-/* Footer */
+/* Floating WhatsApp Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 65px;
+    height: 65px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1) rotate(5deg);
+    background-color: #128c7e;
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--tomato);
+    color: white;
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-weight: 800;
+    border: 2px solid #fff;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Footer Improvements */
 footer {
-    background: #050505;
-    padding: 80px 0 40px;
-    border-top: 1px solid var(--border);
+    background: #000c1a;
+    padding: 100px 0 40px;
+    border-top: 5px solid var(--tomato);
+    color: #fff;
 }
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 4rem;
-    margin-bottom: 4rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-bottom: 5rem;
 }
 
 .footer-col h4 {
-    margin-bottom: 1.5rem;
     color: #fff;
     font-size: 1.1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--tomato);
 }
 
 .footer-links {
@@ -361,60 +431,77 @@ footer {
 }
 
 .footer-links li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
 }
 
 .footer-links a {
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     transition: var(--transition);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .footer-links a:hover {
-    color: var(--accent);
-    padding-left: 5px;
+    color: var(--tomato);
+    transform: translateX(5px);
 }
 
 .footer-bottom {
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--text-muted);
-    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
+/* Mission & Vision Styling */
+.mv-box {
+    background: #fff;
+    padding: 4rem;
+    border-radius: 30px;
+    box-shadow: 0 40px 80px rgba(0, 33, 71, 0.08);
+    height: 100%;
+    transition: var(--transition);
+}
+
+.mv-box:hover {
+    transform: translateY(-10px);
+}
+
+.mv-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 99, 71, 0.1);
+    color: var(--tomato);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Responsive fixes */
+@media (max-width: 1024px) {
     .footer-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .hero-box {
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url('../img/security_guard_hero.png');
-        padding: 2rem;
-        min-height: 500px;
-    }
-
-    .hero-content {
-        padding: 2rem;
-        text-align: center;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 640px) {
-    .container {
-        padding: 0 1.5rem;
-    }
-
     .footer-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
     }
 
-    nav ul {
-        display: none;
-        /* Add burger menu later */
+    .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
     }
 }

@@ -19,159 +19,122 @@
   <link rel="stylesheet" href="css/index.css">
 </head>
 
-<body>
+<body class="home-page">
 
   <header id="header-container"></header>
 
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/593994286600?text=Hola%20Centinelas%20del%20Norte,%20deseo%20más%20información."
+    class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-badge">1</span>
+  </a>
+
   <main>
-    <!-- HERO -->
+    <!-- HERO / SECCION PRINCIPAL -->
     <section class="hero">
       <div class="container">
         <div class="hero-box">
           <div class="hero-content">
-            <span class="tag">Disciplina & Seguridad</span>
-            <h1>Vigilancia Estratégica en el Norte</h1>
-            <p>Brindamos soluciones robustas de seguridad privada, protegiendo sus activos con personal altamente
-              capacitado y tecnología táctica de respuesta inmediata.</p>
+            <span class="tag">Centinelas del Norte – GuardSecurity</span>
+            <h1>Protección Civil e Institucional Líder</h1>
+            <p>Brindamos servicios de seguridad privada bajo los más altos estándares de calidad, mejorando su
+              percepción de seguridad y su entorno.</p>
             <div class="hero-btns" style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-              <a href="#contacto" class="btn-yellow">Contactar Ahora <i class="fas fa-arrow-right"></i></a>
+              <a href="#quienes" class="btn-yellow">Más Información <i class="fas fa-arrow-down"></i></a>
               <a href="servicios.html" class="btn-yellow"
-                style="background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); box-shadow: none;">Ver
-                Servicios</a>
+                style="background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); box-shadow: none;">Conócenos</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- STATS -->
-    <section class="stats" style="padding: 0; margin-top: -80px; position: relative; z-index: 5;">
+    <!-- QUIENES SOMOS / IDENTIDAD -->
+    <section id="quienes" style="padding: 150px 0; background: #fff;">
       <div class="container">
-        <div class="grid-3">
-          <div class="glass-card" style="text-align: center; padding: 3rem;">
-            <h3 style="font-size: 3rem; color: var(--tomato); margin-bottom: 0.5rem;">20+</h3>
-            <p
-              style="color: var(--navy); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">
-              Años de Trayectoria</p>
+        <div class="about-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;">
+          <div class="about-content animate-on-scroll">
+            <span class="tag">Identidad Corporativa</span>
+            <h2>Nuestra Misión</h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-main); margin-bottom: 3rem;">
+              Brindar servicios de seguridad privada bajo los más altos estándares de calidad, enfocados en mejorar la
+              percepción de seguridad de todos nuestros usuarios y del entorno en el que se desenvuelven, utilizando
+              herramientas tecnológicas de punta y contando con personal altamente calificado y permanentemente
+              entrenado.
+            </p>
+
+            <div class="glass-card"
+              style="border-left: 5px solid var(--tomato); padding: 3rem; background: var(--bg-dark);">
+              <h3 style="margin-bottom: 2rem;">Nuestra Visión</h3>
+              <p style="font-weight: 500; font-size: 1.1rem; color: var(--navy);">
+                Convertirnos en una empresa con presencia a nivel nacional, líder en la prestación de servicios de
+                seguridad, con la finalidad de que nuestros clientes y futuros clientes nos reconozcan por nuestro
+                profesionalismo y compromiso.
+              </p>
+            </div>
           </div>
-          <div class="glass-card" style="text-align: center; padding: 3rem;">
-            <h3 style="font-size: 3rem; color: var(--tomato); margin-bottom: 0.5rem;">1k+</h3>
-            <p
-              style="color: var(--navy); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">
-              Puntos Vigilados</p>
-          </div>
-          <div class="glass-card" style="text-align: center; padding: 3rem;">
-            <h3 style="font-size: 3rem; color: var(--tomato); margin-bottom: 0.5rem;">24/7</h3>
-            <p
-              style="color: var(--navy); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">
-              Operación Continua</p>
+          <div class="about-visual animate-on-scroll">
+            <div
+              style="position: relative; border-radius: 40px; overflow: hidden; box-shadow: 0 50px 100px rgba(0,33,71,0.15);">
+              <img src="img/Seguridad.jpg" alt="Centinela Security" style="width: 100%; display: block;">
+              <div
+                style="position: absolute; bottom: 0; left: 0; right: 0; padding: 3rem; background: linear-gradient(to top, var(--navy), transparent); color: #fff;">
+                <div style="font-size: 1.5rem; font-weight: 800;"><i class="fas fa-shield-halved"
+                    style="color: var(--tomato);"></i> GuardSecurity</div>
+                <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">Presencia a Nivel Nacional</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES -->
-    <section class="services" id="servicios" style="padding: 150px 0;">
+
+
+    <!-- NUESTROS RECURSOS / GRID -->
+    <section id="recursos" style="padding: 150px 0; background: #fff;">
       <div class="container">
         <div class="section-header" style="text-align: center; margin-bottom: 5rem;">
-          <h2>Soluciones de Protección</h2>
-          <p class="subtext" style="margin: 0 auto;">Ofrecemos un despliegue táctico adaptado a la geografía y
-            necesidades específicas de cada zona.</p>
+          <span class="tag">Propuesta de Valor</span>
+          <h2>Nuestros Recursos para Guardias</h2>
+          <p class="subtext" style="margin: 0 auto;">Formación continua y herramientas de gestión para nuestro factor de
+            éxito principal.</p>
         </div>
 
-        <div class="services-grid grid-3">
-          <div class="service-card glass-card">
-            <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
-            <h3>Seguridad Residencial</h3>
-            <p>Control de acceso riguroso y vigilancia perimetral para la tranquilidad de su familia.</p>
-            <a href="servicios.html"
-              style="color: var(--tomato); text-decoration: none; font-size: 0.9rem; font-weight: 800; margin-top: 1.5rem; display: inline-block;">SABER
-              MÁS <i class="fas fa-chevron-right"></i></a>
+        <div class="grid-3">
+          <div class="glass-card animate-on-scroll" style="padding: 2.5rem; border: 1px dashed var(--border);">
+            <div style="font-size: 2.5rem; color: var(--tomato); margin-bottom: 1.5rem;"><i
+                class="fas fa-laptop-code"></i></div>
+            <h4>Aula Virtual</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin: 1rem 0;">Capacitación constante y evaluación
+              de competencias en línea.</p>
+            <a href="https://centineladelnorte.com.ec/mentoria/login/index.php" class="btn-yellow"
+              style="width: 100%; justify-content: center;">Ingresar al Aula</a>
           </div>
-          <div class="service-card glass-card">
-            <div class="service-icon"><i class="fas fa-warehouse"></i></div>
-            <h3>Seguridad Industrial</h3>
-            <p>Protección especializada para bodegas, plantas y centros logísticos de alto valor.</p>
-            <a href="servicios.html"
-              style="color: var(--tomato); text-decoration: none; font-size: 0.9rem; font-weight: 800; margin-top: 1.5rem; display: inline-block;">SABER
-              MÁS <i class="fas fa-chevron-right"></i></a>
+          <div class="glass-card animate-on-scroll" style="padding: 2.5rem; border: 1px dashed var(--border);">
+            <div style="font-size: 2.5rem; color: var(--tomato); margin-bottom: 1.5rem;"><i
+                class="fas fa-envelope-open"></i></div>
+            <h4>Correo Corporativo</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin: 1rem 0;">Acceso a canales oficiales de
+              comunicación institucional.</p>
+            <a href="#" class="btn-yellow" style="width: 100%; justify-content: center; background: var(--navy);">Acceso
+              Mail</a>
           </div>
-          <div class="service-card glass-card">
-            <div class="service-icon"><i class="fas fa-car-side"></i></div>
-            <h3>Custodia de Mercancía</h3>
-            <p>Soporte táctico en trayectos críticos para asegurar que su carga llegue a su destino.</p>
-            <a href="servicios.html"
-              style="color: var(--tomato); text-decoration: none; font-size: 0.9rem; font-weight: 800; margin-top: 1.5rem; display: inline-block;">SABER
-              MÁS <i class="fas fa-chevron-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="about" style="background: #eef2f6; padding: 150px 0;">
-      <div class="container">
-        <div class="about-grid"
-          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 5rem; align-items: center;">
-          <div class="about-img">
-            <div
-              style="position: relative; border-radius: 30px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.1);">
-              <img src="img/security_monitoring_center.png" alt="Centro de Operaciones"
-                style="width: 100%; display: block;">
-              <div
-                style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 33, 71, 0.4), transparent);">
-              </div>
-            </div>
-          </div>
-          <div class="about-content">
-            <span class="tag">Nuestra Identidad</span>
-            <h2>Compromiso con el Norte</h2>
-            <p>En Centinelas del Norte, no solo vigilamos; protegemos con una doctrina de honor y disciplina. Con raíces
-              profundas en la región, entendemos los desafíos locales y respondemos con eficacia.</p>
-
-            <div class="benefit-list" style="margin: 3rem 0; display: grid; gap: 2rem;">
-              <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
-                <div
-                  style="width: 30px; height: 30px; border-radius: 50%; background: var(--tomato); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0;">
-                  <i class="fas fa-check" style="font-size: 0.8rem;"></i></div>
-                <div>
-                  <h4 style="margin-bottom: 0.3rem;">Personal Certificado</h4>
-                  <p style="font-size: 0.95rem; color: var(--text-muted);">Entrenamiento intensivo en tácticas de
-                    defensa y primeros auxilios.</p>
-                </div>
-              </div>
-              <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
-                <div
-                  style="width: 30px; height: 30px; border-radius: 50%; background: var(--tomato); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0;">
-                  <i class="fas fa-check" style="font-size: 0.8rem;"></i></div>
-                <div>
-                  <h4 style="margin-bottom: 0.3rem;">Respuesta Táctica</h4>
-                  <p style="font-size: 0.95rem; color: var(--text-muted);">Unidades móviles listas para despliegue
-                    inmediato ante cualquier alerta.</p>
-                </div>
-              </div>
-            </div>
-
-            <a href="quienes.html" class="btn-yellow">Nuestra Historia <i class="fas fa-chevron-right"></i></a>
+          <div class="glass-card animate-on-scroll" style="padding: 2.5rem; border: 1px dashed var(--border);">
+            <div style="font-size: 2.5rem; color: var(--tomato); margin-bottom: 1.5rem;"><i
+                class="fas fa-calendar-check"></i></div>
+            <h4>Gestión de Turnos</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin: 1rem 0;">Organización jerárquica y control
+              operativo nacional.</p>
+            <button class="btn-yellow" style="width: 100%; justify-content: center;">Consultar Horarios</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT FAST -->
-    <section id="contacto" style="padding: 150px 0;">
-      <div class="container">
-        <div class="glass-card"
-          style="padding: 5rem; text-align: center; background: var(--navy); color: #fff; border: none;">
-          <h2 style="color: #fff; border: none; padding: 0; margin-bottom: 1.5rem; font-size: 3.5rem;">¿Listos para
-            reforzar su seguridad?</h2>
-          <p class="subtext" style="color: rgba(255,255,255,0.7); margin: 0 auto 3.5rem;">Hable hoy con uno de nuestros
-            estrategas y reciba una asesoría personalizada.</p>
-          <a href="contacto.html" class="btn-yellow" style="padding: 1.5rem 4rem; font-size: 1.1rem;">Agendar Auditoría
-            Gratuita</a>
-        </div>
-      </div>
-    </section>
+
+
   </main>
 
   <footer id="footer-container"></footer>
