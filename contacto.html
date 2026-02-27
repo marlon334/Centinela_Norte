@@ -25,7 +25,7 @@
   <header id="header-container"></header>
 
   <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/593994286600?text=Hola%20Centinelas%20del%20Norte,%20deseo%20más%20información."
+  <a href="https://wa.me/593982313635?text=Hola%20Centinelas%20del%20Norte,%20deseo%20más%20información."
     class="whatsapp-float" target="_blank">
     <i class="fab fa-whatsapp"></i>
     <span class="whatsapp-badge">1</span>
@@ -135,6 +135,7 @@
 
           <script>
             const btn = document.getElementById('submit-btn');
+            const form = document.getElementById('secure-form');
             const privacyCheck = document.getElementById('privacy-check');
             let isCaptchaVerified = false;
 
@@ -159,6 +160,35 @@
             }
 
             privacyCheck.addEventListener('change', updateSubmitButton);
+
+            // Redirección Dinámica a WhatsApp al enviar
+            form.addEventListener('submit', function (e) {
+              e.preventDefault();
+
+              const name = form.querySelector('[name="name"]').value;
+              const email = form.querySelector('[name="email"]').value;
+              const subject = form.querySelector('[name="subject"]').value;
+              const message = form.querySelector('[name="message"]').value;
+
+              const text = `*Nueva Solicitud de Registro - Centinelas del Norte*%0A%0A` +
+                `*Nombre:* ${name}%0A` +
+                `*Email:* ${email}%0A` +
+                `*Asunto:* ${subject}%0A` +
+                `*Mensaje:* ${message}`;
+
+              const whatsappUrl = `https://wa.me/593982313635?text=${text}`;
+
+              // Primero enviamos a Formspree en segundo plano para el registro de respaldo
+              fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+              });
+
+              // Redirigimos inmediatamente al chat
+              window.open(whatsappUrl, '_blank');
+              alert('¡Gracias! Redirigiendo a su chat de seguridad...');
+            });
           </script>
         </div>
       </div>
