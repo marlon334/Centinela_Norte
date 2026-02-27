@@ -1,5 +1,5 @@
 /**
- * Centinelas del Norte - Core Engine
+ * Centinela del Norte - Core Engine
  * Handles component loading and UI interactions.
  */
 
