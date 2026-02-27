@@ -34,16 +34,16 @@
     <!-- SECCIÓN VIDEO INSTITUCIONAL (Full Screen) -->
     <section class="video-section">
       <div class="video-container">
-        <!-- RUTA DEL VIDEO: Puede subir su video a la carpeta 'video/' y renombrarlo como 'institucional.mp4' -->
-        <video autoplay muted loop playsinline class="bg-video">
+        <!-- IMAGEN DE FONDO / VIDEO: Se usa home.jpg como fondo principal del contenedor -->
+        <video autoplay muted loop playsinline class="bg-video" poster="img/home.jpg"
+          style="background: url('img/home.jpg') center/cover no-repeat;">
           <source src="video/institucional.mp4" type="video/mp4">
           <source
             src="https://assets.mixkit.co/videos/preview/mixkit-security-guard-walking-in-a-parking-lot-43572-large.mp4"
             type="video/mp4">
           Tu navegador no soporta el elemento de video.
         </video>
-        <div class="video-overlay"
-          style="background: linear-gradient(to right, rgba(0, 33, 71, 0.9) 0%, rgba(0, 33, 71, 0.3) 100%);">
+        <div class="video-overlay">
           <div class="container">
             <div class="video-content animate-on-scroll">
               <span class="tag">Seguridad de Élite</span>

@@ -26,7 +26,7 @@
     height: auto;
     transform: translate(-50%, -50%);
     object-fit: cover;
-    opacity: 0.7;
+    opacity: 0.85;
 }
 
 .video-overlay {
@@ -35,7 +35,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(0, 33, 71, 0.8) 0%, rgba(0, 33, 71, 0.2) 100%);
+    background: linear-gradient(to right, rgba(0, 33, 71, 0.6) 0%, rgba(0, 33, 71, 0.1) 100%);
     display: flex;
     align-items: center;
     z-index: 2;
