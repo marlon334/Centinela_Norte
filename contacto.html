@@ -91,10 +91,13 @@
             </div>
             <div class="form-group">
               <label
-                style="display: block; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Mensaje
-                Detallado</label>
-              <textarea name="message" required placeholder="Describa brevemente sus necesidades de seguridad..."
-                style="width: 100%; padding: 1.25rem; background: #fff; border: 1px solid var(--border); border-radius: 12px; color: var(--navy); min-height: 180px; transition: all 0.3s ease; font-weight: 500;"></textarea>
+                style="display: block; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Asunto
+                (Máx. 10 palabras)</label>
+              <textarea id="message-text" name="message" required placeholder="Escriba el asunto de su requerimiento..."
+                style="width: 100%; padding: 1.25rem; background: #fff; border: 1px solid var(--border); border-radius: 12px; color: var(--navy); min-height: 100px; transition: all 0.3s ease; font-weight: 500;"></textarea>
+              <div id="word-count-error"
+                style="color: var(--tomato); font-size: 0.75rem; margin-top: 0.5rem; display: none;">Ha excedido el
+                límite de 10 palabras.</div>
             </div>
 
             <!-- Capas de Información LOPDP -->
@@ -106,7 +109,7 @@
                 de registro o requerimientos de seguridad institucional.</p>
               <p><strong style="color: #fff;">Derechos:</strong> Puede ejercer sus derechos de acceso, rectificación,
                 supresión y otros previstos en la LOPDP enviando un correo a <span
-                  style="text-decoration: underline;">protecciondatos@centineladelnorte.com.ec</span></p>
+                  style="text-decoration: underline;">soporte@centineladelnorte.com.ec</span></p>
             </div>
 
             <!-- Privacy Policy Checkbox -->
@@ -138,10 +141,25 @@
             const btn = document.getElementById('submit-btn');
             const form = document.getElementById('secure-form');
             const privacyCheck = document.getElementById('privacy-check');
+            const messageText = document.getElementById('message-text');
+            const wordError = document.getElementById('word-count-error');
             let isCaptchaVerified = false;
 
             function updateSubmitButton() {
-              if (isCaptchaVerified && privacyCheck.checked) {
+              let words = messageText.value.trim().split(/\s+/).filter(word => word.length > 0);
+
+              if (words.length > 10) {
+                // Truncar a 10 palabras exactamente
+                const truncated = messageText.value.trim().split(/\s+/).slice(0, 10).join(' ');
+                messageText.value = truncated;
+                words = truncated.split(/\s+/);
+                wordError.style.display = 'block';
+                wordError.textContent = 'Límite de 10 palabras alcanzado.';
+              } else {
+                wordError.style.display = 'none';
+              }
+
+              if (isCaptchaVerified && privacyCheck.checked && words.length > 0 && words.length <= 10) {
                 btn.disabled = false;
                 btn.style.opacity = '1';
               } else {
@@ -149,6 +167,8 @@
                 btn.style.opacity = '0.5';
               }
             }
+
+            messageText.addEventListener('input', updateSubmitButton);
 
             function onCaptchaSuccess() {
               isCaptchaVerified = true;
