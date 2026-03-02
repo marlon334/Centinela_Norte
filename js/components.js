@@ -70,12 +70,31 @@ function revealImmediately() {
 function initMobileMenu() {
     const toggle = document.querySelector('.mobile-toggle');
     const nav = document.querySelector('nav');
+    const dropdowns = document.querySelectorAll('.dropdown');
 
     if (toggle && nav) {
         toggle.addEventListener('click', () => {
             nav.classList.toggle('mobile-active');
             toggle.classList.toggle('active');
+
+            // Close all dropdowns when closing menu
+            if (!nav.classList.contains('mobile-active')) {
+                dropdowns.forEach(d => d.classList.remove('active'));
+            }
         });
     }
+
+    // Toggle dropdowns on mobile
+    dropdowns.forEach(dropdown => {
+        const dropbtn = dropdown.querySelector('.dropbtn');
+        if (dropbtn) {
+            dropbtn.addEventListener('click', (e) => {
+                if (window.innerWidth <= 991) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        }
+    });
 }
 
