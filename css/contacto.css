@@ -1,14 +1,47 @@
 /* Page specific styles */
 
+/* Override global.css page-header spacing */
+.page-header {
+    padding-top: 110px !important;
+    /* Move header higher */
+    padding-bottom: 20px !important;
+    /* Minimal space before contact section starts */
+    background: linear-gradient(to bottom, #000, #1a2a44) !important;
+    /* Darker gradient for premium feel */
+}
+
+.page-header h1 {
+    color: #fff !important;
+    font-size: clamp(2.5rem, 5vw, 3.5rem) !important;
+}
+
+.page-header .tag {
+    margin-bottom: 0.5rem !important;
+}
+
+.page-header .subtext {
+    color: rgba(255, 255, 255, 0.8) !important;
+    max-width: 600px;
+    margin: 1rem auto !important;
+}
+
 .contact-section {
-    padding-top: 120px;
-    /* Space to clear the fixed header + small gap */
-    padding-bottom: 80px;
+    padding-top: 40px !important;
+    /* Clean separation from the header */
+    margin-top: 0;
+    /* Remove overlap */
+    position: relative;
+    z-index: 2;
 }
 
 @media (max-width: 768px) {
+    .page-header {
+        padding-top: 90px !important;
+        padding-bottom: 30px !important;
+    }
+
     .contact-section {
-        padding-top: 100px;
-        padding-bottom: 60px;
+        padding-top: 30px !important;
+        margin-top: 0;
     }
 }
