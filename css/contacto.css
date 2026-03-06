@@ -1,1 +1,14 @@
 /* Page specific styles */
+
+.contact-section {
+    padding-top: 120px;
+    /* Space to clear the fixed header + small gap */
+    padding-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+}
