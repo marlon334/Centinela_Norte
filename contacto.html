@@ -49,7 +49,7 @@
         <div class="glass-card responsive-card animate-on-scroll" style="max-width: 900px; margin: 0 auto;">
           <div style="text-align: center; margin-bottom: 3.5rem;">
             <div style="display: inline-flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-              <h2 style="margin: 0;">Formulario de registro</h2>
+              <h2 style="margin: 0;">Portal de Reclutamiento: Centinela del Norte</h2>
               <div
                 style="background: #4ade80; color: #000; padding: 4px 12px; border-radius: 20px; font-size: 0.65rem; font-weight: 900; letter-spacing: 1px; display: flex; align-items: center; gap: 5px;">
                 <i class="fas fa-lock"></i> DATOS PROTEGIDOS
@@ -84,20 +84,32 @@
                 de Requerimiento</label>
               <select name="subject"
                 style="width: 100%; padding: 1.25rem; background: #fff; border: 1px solid var(--border); border-radius: 12px; color: var(--navy); appearance: none; cursor: pointer; font-weight: 500;">
-                <option value="Contratación">Contratación de Guardias</option>
-                <option value="Supervisores">Contratación Supervisores</option>
+                <option value="Guardia de Seguridad">Guardias de Seguridad</option>
+                <option value="Supervisor de Seguridad">Supervisor de Seguridad</option>
                 <option value="Otros">Otros</option>
               </select>
             </div>
             <div class="form-group">
               <label
-                style="display: block; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Asunto
-                (Máx. 10 palabras)</label>
-              <textarea id="message-text" name="message" required placeholder="Escriba el asunto de su requerimiento..."
-                style="width: 100%; padding: 1.25rem; background: #fff; border: 1px solid var(--border); border-radius: 12px; color: var(--navy); min-height: 100px; transition: all 0.3s ease; font-weight: 500;"></textarea>
-              <div id="word-count-error"
-                style="color: var(--tomato); font-size: 0.75rem; margin-top: 0.5rem; display: none;">Ha excedido el
-                límite de 10 palabras.</div>
+                style="display: block; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Requerimientos
+                Mínimos</label>
+              <div
+                style="padding: 1.25rem; background: rgba(255,255,255,0.05); border: 1px dashed var(--border); border-radius: 12px; color: var(--navy); font-size: 0.9rem;">
+                <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem;">
+                  <li style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-file-pdf" style="color: var(--tomato);"></i> 1. Hoja de vida
+                  </li>
+                  <li style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-id-card" style="color: var(--tomato);"></i> 2. Cédula de identidad y de votación
+                  </li>
+                  <li style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-certificate" style="color: var(--tomato);"></i> 3. Diploma y credencial Nivel 1 y Nivel 2
+                  </li>
+                  <li style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-award" style="color: var(--tomato);"></i> 4. Diploma reentrenamiento Completo vigente
+                  </li>
+                </ul>
+              </div>
             </div>
 
             <!-- Capas de Información LOPDP -->
@@ -145,19 +157,7 @@
             let isCaptchaVerified = false;
 
             function updateSubmitButton() {
-              let words = messageText.value.trim().split(/\s+/).filter(word => word.length > 0);
-
-              if (words.length > 10) {
-                const truncated = messageText.value.trim().split(/\s+/).slice(0, 10).join(' ');
-                messageText.value = truncated;
-                words = truncated.split(/\s+/);
-                wordError.style.display = 'block';
-                wordError.textContent = 'Límite de 10 palabras alcanzado.';
-              } else {
-                wordError.style.display = 'none';
-              }
-
-              if (isCaptchaVerified && privacyCheck.checked && words.length > 0 && words.length <= 10) {
+              if (isCaptchaVerified && privacyCheck.checked) {
                 btn.disabled = false;
                 btn.style.opacity = '1';
               } else {
@@ -166,7 +166,7 @@
               }
             }
 
-            messageText.addEventListener('input', updateSubmitButton);
+            // messageText listener removed since there is no textarea anymore
 
             function onCaptchaSuccess() {
               isCaptchaVerified = true;
@@ -193,13 +193,12 @@
               const name = formData.get('name');
               const email = formData.get('email');
               const subject = formData.get('subject');
-              const message = formData.get('message');
 
               const text = `*Nueva Solicitud de Registro - Centinela del Norte*%0A%0A` +
-                `*Nombre:* ${name}%0A` +
+                `*Nombre Completo:* ${name}%0A` +
                 `*Email:* ${email}%0A` +
-                `*Asunto:* ${subject}%0A` +
-                `*Mensaje:* ${message}`;
+                `*Tipo de Requerimiento:* ${subject}%0A%0A` +
+                `_Adjunto mis documentos requeridos para el proceso._`;
 
               const whatsappUrl = `https://wa.me/593982313635?text=${text}`;
 

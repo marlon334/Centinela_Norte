@@ -26,7 +26,7 @@ $captcha_response = $_POST['g-recaptcha-response'] ?? '';
 $name = strip_tags(trim($_POST['name'] ?? ''));
 $email = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
 $subject_type = strip_tags(trim($_POST['subject'] ?? 'Consulta General'));
-$message_content = strip_tags(trim($_POST['message'] ?? ''));
+$message_content = strip_tags(trim($_POST['message'] ?? 'Proceso de Reclutamiento'));
 
 // Validate Captcha
 if (empty($captcha_response)) {
@@ -68,7 +68,7 @@ if (!$verify_json->success) {
 }
 
 // Basic validation for other fields
-if (empty($name) || empty($email) || empty($message_content)) {
+if (empty($name) || empty($email)) {
     $response['message'] = 'Por favor, complete todos los campos requeridos.';
     echo json_encode($response);
     exit;
@@ -84,7 +84,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $email_subject = $subject_prefix . $subject_type;
 $email_body = "Se ha recibido un nuevo mensaje desde el formulario de contacto táctico de Centinela del Norte.\n\n";
 $email_body .= "--------------------------------------------------\n";
-$email_body .= "Nombre: $name\n";
+$email_body .= "Nombre Completo: $name\n";
 $email_body .= "Email: $email\n";
 $email_body .= "Requerimiento: $subject_type\n";
 $email_body .= "--------------------------------------------------\n\n";
