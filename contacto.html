@@ -89,48 +89,40 @@
                 <option value="Otros">Otros</option>
               </select>
             </div>
-            <div class="form-group">
-              <label
-                style="display: block; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Requerimientos
-                Mínimos</label>
-              <div
-                style="padding: 1.25rem; background: rgba(255,255,255,0.05); border: 1px dashed var(--border); border-radius: 12px; color: var(--navy); font-size: 0.9rem;">
-                <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem;">
-                  <li style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-file-pdf" style="color: var(--tomato);"></i> 1. Hoja de vida
-                  </li>
-                  <li style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-id-card" style="color: var(--tomato);"></i> 2. Cédula de identidad y papeleta de
-                    votación
-                  </li>
-                  <li style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-certificate" style="color: var(--tomato);"></i> 3. Diploma y credencial Nivel 1 y
-                    Nivel 2
-                  </li>
-                  <li style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-award" style="color: var(--tomato);"></i> 4. Diploma reentrenamiento Completo
-                    vigente
-                  </li>
-                </ul>
-              </div>
-            </div>
+
 
             <div class="form-group">
               <label
                 style="display: block; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Cargar
                 Documentación (PDF Único - Máx. 10MB)</label>
               <div
-                style="position: relative; border: 2px dashed var(--border); border-radius: 12px; padding: 2rem; text-align: center; transition: all 0.3s ease; background: rgba(255,255,255,0.02);"
+                style="margin-bottom: 1rem; padding: 1.25rem; background: rgba(0,0,0,0.05); border: 1px dashed var(--border); border-radius: 12px; color: var(--navy); font-size: 0.85rem; line-height: 1.5;">
+                <p style="margin-bottom: 0.75rem; font-weight: 700; color: var(--tomato);">
+                  <i class="fas fa-info-circle"></i> Instrucciones de Formato:
+                </p>
+                <p style="margin-bottom: 1rem;">
+                  Adjuntar todos sus documentos en un solo archivo con formato PDF, lo mas claro y nítido posible.
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; font-size: 0.8rem;">
+                  <li><i class="fas fa-check" style="color: var(--tomato); width: 20px;"></i> 1. Hoja de vida</li>
+                  <li><i class="fas fa-check" style="color: var(--tomato); width: 20px;"></i> 2. Cédula y papeleta de
+                    votación</li>
+                  <li><i class="fas fa-check" style="color: var(--tomato); width: 20px;"></i> 3. Diploma y credencial
+                    Nivel 1 y 2</li>
+                  <li><i class="fas fa-check" style="color: var(--tomato); width: 20px;"></i> 4. Diploma reentrenamiento
+                    vigente</li>
+                </ul>
+              </div>
+              <div
+                style="position: relative; border: 2px dashed var(--border); border-radius: 12px; padding: 2.5rem; text-align: center; transition: all 0.3s ease; background: var(--bg-dark);"
                 id="drop-zone">
                 <input type="file" name="documents[]" id="file-input" required accept=".pdf"
                   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;">
                 <div id="file-preview-container">
-                  <i class="fas fa-file-pdf"
-                    style="font-size: 2.5rem; color: var(--tomato); margin-bottom: 1rem;"></i>
-                  <p style="font-size: 0.9rem; color: var(--navy); font-weight: 600;">Seleccione su archivo PDF aquí</p>
-                  <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; padding: 0 1rem; line-height: 1.4;">
-                    Adjuntar todos sus documentos en un solo archivo con formato PDF, lo mas claro y nítido posible en resolución de Media 300 dpi.
-                  </p>
+                  <i class="fas fa-file-pdf" style="font-size: 2.5rem; color: var(--tomato); margin-bottom: 1rem;"></i>
+                  <p style="font-size: 0.9rem; color: var(--navy); font-weight: 800;">SUBIR ARCHIVO PDF AQUÍ</p>
+                  <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem;">Haga clic o arrastre el
+                    archivo</p>
                 </div>
                 <div id="file-list"
                   style="margin-top: 1.5rem; text-align: left; font-size: 0.85rem; color: var(--navy); display: none; background: rgba(0,0,0,0.05); padding: 1rem; border-radius: 8px;">
