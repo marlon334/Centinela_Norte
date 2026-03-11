@@ -59,9 +59,9 @@
               usted.</p>
           </div>
 
-          <!-- Formspree Integration -->
-          <form action="https://formspree.io/f/davidtulcan@centineladelnorte.com.ec" method="POST" class="contact-form"
-            id="secure-form" style="display: grid; gap: 2rem;">
+          <!-- PHP Handler Integration -->
+          <form action="contact-handler.php" method="POST" class="contact-form" id="secure-form"
+            style="display: grid; gap: 2rem;">
             <div class="form-grid">
               <div class="form-group">
                 <label
@@ -126,15 +126,14 @@
 
             <!-- Google reCAPTCHA Validation -->
             <div style="display: flex; justify-content: center; margin: 1rem 0;">
-              <div class="g-recaptcha" data-sitekey="6LfXXHksAAAAAPJ0kzKY0_NUVb2iZhctk3EgXaOB"
+              <div class="g-recaptcha" data-sitekey="6Lcd_oYsAAAAAPNXKxver33Aw052Y8EiA8YXdxyE"
                 data-callback="onCaptchaSuccess" data-expired-callback="onCaptchaExpired"></div>
             </div>
 
             <button type="submit" id="submit-btn" class="btn-yellow" disabled
-              style="width: 100%; justify-content: center; padding: 1.5rem; opacity: 0.5; transition: all 0.3s ease; font-size: 1.1rem;">ENVIAR
-              SOLICITUD ESTRATÉGICA</button>
-
-
+              style="width: 100%; justify-content: center; padding: 1.5rem; opacity: 0.5; transition: all 0.3s ease; font-size: 1.1rem;">
+              <i class="fas fa-paper-plane" style="margin-right: 10px;"></i> ENVIAR SOLICITUD ESTRATÉGICA
+            </button>
           </form>
 
           <script>
@@ -149,7 +148,6 @@
               let words = messageText.value.trim().split(/\s+/).filter(word => word.length > 0);
 
               if (words.length > 10) {
-                // Truncar a 10 palabras exactamente
                 const truncated = messageText.value.trim().split(/\s+/).slice(0, 10).join(' ');
                 messageText.value = truncated;
                 words = truncated.split(/\s+/);
@@ -182,14 +180,20 @@
 
             privacyCheck.addEventListener('change', updateSubmitButton);
 
-            // Redirección Dinámica a WhatsApp al enviar
+            // Redirección Dinámica a WhatsApp al enviar con validación backend
             form.addEventListener('submit', function (e) {
               e.preventDefault();
 
-              const name = form.querySelector('[name="name"]').value;
-              const email = form.querySelector('[name="email"]').value;
-              const subject = form.querySelector('[name="subject"]').value;
-              const message = form.querySelector('[name="message"]').value;
+              // UI Feedback
+              btn.disabled = true;
+              btn.style.opacity = '0.7';
+              btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> VERIFICANDO SEGURIDAD...';
+
+              const formData = new FormData(form);
+              const name = formData.get('name');
+              const email = formData.get('email');
+              const subject = formData.get('subject');
+              const message = formData.get('message');
 
               const text = `*Nueva Solicitud de Registro - Centinela del Norte*%0A%0A` +
                 `*Nombre:* ${name}%0A` +
@@ -199,16 +203,37 @@
 
               const whatsappUrl = `https://wa.me/593982313635?text=${text}`;
 
-              // Primero enviamos a Formspree en segundo plano para el registro de respaldo
+              // Enviamos al backend para verificación reCAPTCHA y respaldo de correo
               fetch(form.action, {
                 method: 'POST',
-                body: new FormData(form),
-                headers: { 'Accept': 'application/json' }
-              });
-
-              // Redirigimos inmediatamente al chat
-              window.open(whatsappUrl, '_blank');
-              alert('¡Gracias! Redirigiendo a su chat de seguridad...');
+                body: formData
+              })
+                .then(response => response.json())
+                .then(data => {
+                  if (data.success) {
+                    // Redirigimos al chat si el correo también se envió
+                    alert('¡Verificación exitosa! Redirigiendo a su chat de seguridad...');
+                    window.open(whatsappUrl, '_blank');
+                    form.reset();
+                    grecaptcha.reset();
+                    isCaptchaVerified = false;
+                    updateSubmitButton();
+                    btn.innerHTML = 'ENVIAR SOLICITUD ESTRATÉGICA';
+                  } else {
+                    // Error en la verificación (ej. captcha inválido o fallo en mail)
+                    alert('Error: ' + data.message);
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    btn.innerHTML = 'INTENTAR DE NUEVO';
+                  }
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                  alert('Hubo un problema con la conexión. Por favor, intente de nuevo o use WhatsApp directamente.');
+                  btn.disabled = false;
+                  btn.style.opacity = '1';
+                  btn.innerHTML = 'INTENTAR DE NUEVO';
+                });
             });
           </script>
         </div>
