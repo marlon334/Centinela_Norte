@@ -100,7 +100,8 @@
                     <i class="fas fa-file-pdf" style="color: var(--tomato);"></i> 1. Hoja de vida
                   </li>
                   <li style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-id-card" style="color: var(--tomato);"></i> 2. Cédula de identidad y de votación
+                    <i class="fas fa-id-card" style="color: var(--tomato);"></i> 2. Cédula de identidad y papeleta de
+                    votación
                   </li>
                   <li style="display: flex; align-items: center; gap: 10px;">
                     <i class="fas fa-certificate" style="color: var(--tomato);"></i> 3. Diploma y credencial Nivel 1 y
@@ -117,28 +118,28 @@
             <div class="form-group">
               <label
                 style="display: block; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Cargar
-                Documentación (Cargar CARPETA - Máx. 10MB total)</label>
+                Documentación (PDF Único - Máx. 10MB)</label>
               <div
                 style="position: relative; border: 2px dashed var(--border); border-radius: 12px; padding: 2rem; text-align: center; transition: all 0.3s ease; background: rgba(255,255,255,0.02);"
                 id="drop-zone">
-                <input type="file" name="documents[]" id="file-input" webkitdirectory directory multiple required
+                <input type="file" name="documents[]" id="file-input" required accept=".pdf"
                   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;">
                 <div id="file-preview-container">
-                  <i class="fas fa-folder-open"
+                  <i class="fas fa-file-pdf"
                     style="font-size: 2.5rem; color: var(--tomato); margin-bottom: 1rem;"></i>
-                  <p style="font-size: 0.9rem; color: var(--navy); font-weight: 600;">Seleccione su CARPETA de
-                    documentos aquí</p>
-                  <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">Debe contener: Hoja de
-                    vida, Cédula y Diplomas</p>
+                  <p style="font-size: 0.9rem; color: var(--navy); font-weight: 600;">Seleccione su archivo PDF aquí</p>
+                  <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; padding: 0 1rem; line-height: 1.4;">
+                    Adjuntar todos sus documentos en un solo archivo con formato PDF, lo mas claro y nítido posible en resolución de Media 300 dpi.
+                  </p>
                 </div>
                 <div id="file-list"
                   style="margin-top: 1.5rem; text-align: left; font-size: 0.85rem; color: var(--navy); display: none; background: rgba(0,0,0,0.05); padding: 1rem; border-radius: 8px;">
                   <div
                     style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
-                    <strong>Carpeta Seleccionada (<span id="file-count">0</span> archivos)</strong>
+                    <strong>Archivo Seleccionado</strong>
                     <button type="button" id="clear-files"
                       style="background: var(--tomato); color: #fff; border: none; padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; cursor: pointer; font-weight: 700;">
-                      <i class="fas fa-trash-alt"></i> ELIMINAR CARPETA
+                      <i class="fas fa-trash-alt"></i> ELIMINAR ARCHIVO
                     </button>
                   </div>
                   <ul id="selected-files-list"
@@ -227,13 +228,12 @@
               const files = fileInput.files;
               if (files.length > 0) {
                 fileList.style.display = 'block';
-                fileCount.textContent = files.length;
                 selectedFilesList.innerHTML = '';
                 Array.from(files).forEach(file => {
                   const li = document.createElement('li');
                   li.style.padding = '4px 0';
                   li.style.borderBottom = '1px solid rgba(0,0,0,0.05)';
-                  li.innerHTML = `<i class="fas fa-file-alt" style="margin-right: 8px; color: var(--tomato);"></i> ${file.name} <span style="font-size: 0.7rem; opacity: 0.6;">(${(file.size / 1024).toFixed(1)} KB)</span>`;
+                  li.innerHTML = `<i class="fas fa-file-pdf" style="margin-right: 8px; color: var(--tomato);"></i> ${file.name} <span style="font-size: 0.7rem; opacity: 0.6;">(${(file.size / 1024).toFixed(1)} KB)</span>`;
                   selectedFilesList.appendChild(li);
                 });
               } else {
