@@ -74,6 +74,57 @@ if (empty($name) || empty($email)) {
     exit;
 }
 
+// --- FILE UPLOAD LOGIC ---
+$upload_dir = 'uploads_reclutamiento/'; // Carpetas se guardarán aquí
+if (!is_dir($upload_dir)) {
+    mkdir($upload_dir, 0755, true);
+}
+
+// Sanitize name for folder name
+$folder_name = preg_replace('/[^a-zA-Z0-0\s]/', '', $name);
+$folder_name = str_replace(' ', '_', $folder_name) . '_' . date('Ymd_His');
+$target_path = $upload_dir . $folder_name . '/';
+
+$uploaded_files_count = 0;
+$total_uploaded_size = 0;
+$max_size = 10 * 1024 * 1024; // 10MB
+
+if (isset($_FILES['documents'])) {
+    // Check total size first
+    foreach ($_FILES['documents']['size'] as $size) {
+        $total_uploaded_size += $size;
+    }
+
+    if ($total_uploaded_size > $max_size) {
+        $response['message'] = 'El tamaño total de los archivos excede los 10MB.';
+        echo json_encode($response);
+        exit;
+    }
+
+    if (!is_dir($target_path)) {
+        mkdir($target_path, 0755, true);
+    }
+
+    foreach ($_FILES['documents']['tmp_name'] as $key => $tmp_name) {
+        // En PHP 8.1+ podemos obtener el full_path original si se desea, 
+        // pero para mantener simplicidad y cumplir el requisito de "carpeta con nombre del usuario", 
+        // guardamos todos los archivos en el nivel principal del usuario.
+        $file_name = basename($_FILES['documents']['name'][$key]);
+        $file_name = preg_replace('/[^a-zA-Z0-0\._-]/', '', $file_name);
+        
+        if (move_uploaded_file($tmp_name, $target_path . $file_name)) {
+            $uploaded_files_count++;
+        }
+    }
+}
+
+if ($uploaded_files_count === 0 && isset($_FILES['documents'])) {
+    $response['message'] = 'No se pudieron procesar los archivos. Verifique el formato.';
+    echo json_encode($response);
+    exit;
+}
+// --- END FILE UPLOAD LOGIC ---
+
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $response['message'] = 'Formato de correo electrónico no válido.';
     echo json_encode($response);
@@ -82,13 +133,16 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 // Prepare Email
 $email_subject = $subject_prefix . $subject_type;
-$email_body = "Se ha recibido un nuevo mensaje desde el formulario de contacto táctico de Centinela del Norte.\n\n";
+$email_body = "Se ha recibido una nueva solicitud de RECLUTAMIENTO.\n\n";
 $email_body .= "--------------------------------------------------\n";
 $email_body .= "Nombre Completo: $name\n";
 $email_body .= "Email: $email\n";
-$email_body .= "Requerimiento: $subject_type\n";
-$email_body .= "--------------------------------------------------\n\n";
-$email_body .= "Mensaje:\n$message_content\n\n";
+$email_body .= "Postulación para: $subject_type\n";
+$email_body .= "--------------------------------------------------\n";
+$email_body .= "DOCUMENTACIÓN:\n";
+$email_body .= "Carpeta de archivos: $folder_name\n";
+$email_body .= "Archivos subidos: $uploaded_files_count\n";
+$email_body .= "Ubicación en servidor: $target_path\n";
 $email_body .= "--------------------------------------------------\n";
 $email_body .= "IP del Remitente: " . $_SERVER['REMOTE_ADDR'] . "\n";
 $email_body .= "Fecha: " . date('Y-m-d H:i:s') . "\n";
@@ -101,9 +155,9 @@ $headers .= "X-Mailer: PHP/" . phpversion();
 // Send Email
 if (mail($to_email, $email_subject, $email_body, $headers)) {
     $response['success'] = true;
-    $response['message'] = 'Mensaje enviado correctamente.';
+    $response['message'] = 'Solicitud y documentos recibidos correctamente.';
 } else {
-    $response['message'] = 'Error al enviar el correo. Por favor, intente más tarde o contáctenos vía WhatsApp.';
+    $response['message'] = 'Error al enviar la notificación. Los archivos se guardaron pero el correo falló.';
 }
 
 header('Content-Type: application/json');

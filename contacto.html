@@ -61,12 +61,12 @@
 
           <!-- PHP Handler Integration -->
           <form action="contact-handler.php" method="POST" class="contact-form" id="secure-form"
-            style="display: grid; gap: 2rem;">
+            enctype="multipart/form-data" style="display: grid; gap: 2rem;">
             <div class="form-grid">
               <div class="form-group">
                 <label
-                  style="display: block; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Nombre
-                  Completo</label>
+                  style="display: block; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Nombres
+                  Completos</label>
                 <input type="text" name="name" required placeholder="Ej. Juan Pérez"
                   style="width: 100%; padding: 1.25rem; background: #fff; border: 1px solid var(--border); border-radius: 12px; color: var(--navy); transition: all 0.3s ease; font-weight: 500;">
               </div>
@@ -103,13 +103,50 @@
                     <i class="fas fa-id-card" style="color: var(--tomato);"></i> 2. Cédula de identidad y de votación
                   </li>
                   <li style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-certificate" style="color: var(--tomato);"></i> 3. Diploma y credencial Nivel 1 y Nivel 2
+                    <i class="fas fa-certificate" style="color: var(--tomato);"></i> 3. Diploma y credencial Nivel 1 y
+                    Nivel 2
                   </li>
                   <li style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-award" style="color: var(--tomato);"></i> 4. Diploma reentrenamiento Completo vigente
+                    <i class="fas fa-award" style="color: var(--tomato);"></i> 4. Diploma reentrenamiento Completo
+                    vigente
                   </li>
                 </ul>
               </div>
+            </div>
+
+            <div class="form-group">
+              <label
+                style="display: block; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Cargar
+                Documentación (Cargar CARPETA - Máx. 10MB total)</label>
+              <div
+                style="position: relative; border: 2px dashed var(--border); border-radius: 12px; padding: 2rem; text-align: center; transition: all 0.3s ease; background: rgba(255,255,255,0.02);"
+                id="drop-zone">
+                <input type="file" name="documents[]" id="file-input" webkitdirectory directory multiple required
+                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;">
+                <div id="file-preview-container">
+                  <i class="fas fa-folder-open"
+                    style="font-size: 2.5rem; color: var(--tomato); margin-bottom: 1rem;"></i>
+                  <p style="font-size: 0.9rem; color: var(--navy); font-weight: 600;">Seleccione su CARPETA de
+                    documentos aquí</p>
+                  <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">Debe contener: Hoja de
+                    vida, Cédula y Diplomas</p>
+                </div>
+                <div id="file-list"
+                  style="margin-top: 1.5rem; text-align: left; font-size: 0.85rem; color: var(--navy); display: none; background: rgba(0,0,0,0.05); padding: 1rem; border-radius: 8px;">
+                  <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                    <strong>Carpeta Seleccionada (<span id="file-count">0</span> archivos)</strong>
+                    <button type="button" id="clear-files"
+                      style="background: var(--tomato); color: #fff; border: none; padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; cursor: pointer; font-weight: 700;">
+                      <i class="fas fa-trash-alt"></i> ELIMINAR CARPETA
+                    </button>
+                  </div>
+                  <ul id="selected-files-list"
+                    style="list-style: none; padding: 0; max-height: 150px; overflow-y: auto;"></ul>
+                </div>
+              </div>
+              <div id="file-error" style="color: var(--tomato); font-size: 0.75rem; margin-top: 0.5rem; display: none;">
+                El tamaño total excede los 10MB. Por favor, reduzca el tamaño de los archivos.</div>
             </div>
 
             <!-- Capas de Información LOPDP -->
@@ -156,15 +193,61 @@
             const wordError = document.getElementById('word-count-error');
             let isCaptchaVerified = false;
 
+            const fileInput = document.getElementById('file-input');
+            const fileError = document.getElementById('file-error');
+            const fileList = document.getElementById('file-list');
+            const selectedFilesList = document.getElementById('selected-files-list');
+            const dropZone = document.getElementById('drop-zone');
+
             function updateSubmitButton() {
-              if (isCaptchaVerified && privacyCheck.checked) {
+              const totalSize = Array.from(fileInput.files).reduce((acc, file) => acc + file.size, 0);
+              const isSizeValid = totalSize > 0 && totalSize <= 10 * 1024 * 1024;
+
+              if (isCaptchaVerified && privacyCheck.checked && isSizeValid) {
                 btn.disabled = false;
                 btn.style.opacity = '1';
               } else {
                 btn.disabled = true;
                 btn.style.opacity = '0.5';
               }
+
+              if (totalSize > 10 * 1024 * 1024) {
+                fileError.style.display = 'block';
+                dropZone.style.borderColor = 'var(--tomato)';
+              } else {
+                fileError.style.display = 'none';
+                dropZone.style.borderColor = 'var(--border)';
+              }
             }
+
+            const clearBtn = document.getElementById('clear-files');
+            const fileCount = document.getElementById('file-count');
+
+            fileInput.addEventListener('change', () => {
+              const files = fileInput.files;
+              if (files.length > 0) {
+                fileList.style.display = 'block';
+                fileCount.textContent = files.length;
+                selectedFilesList.innerHTML = '';
+                Array.from(files).forEach(file => {
+                  const li = document.createElement('li');
+                  li.style.padding = '4px 0';
+                  li.style.borderBottom = '1px solid rgba(0,0,0,0.05)';
+                  li.innerHTML = `<i class="fas fa-file-alt" style="margin-right: 8px; color: var(--tomato);"></i> ${file.name} <span style="font-size: 0.7rem; opacity: 0.6;">(${(file.size / 1024).toFixed(1)} KB)</span>`;
+                  selectedFilesList.appendChild(li);
+                });
+              } else {
+                fileList.style.display = 'none';
+              }
+              updateSubmitButton();
+            });
+
+            clearBtn.addEventListener('click', () => {
+              fileInput.value = '';
+              fileList.style.display = 'none';
+              selectedFilesList.innerHTML = '';
+              updateSubmitButton();
+            });
 
             // messageText listener removed since there is no textarea anymore
 
