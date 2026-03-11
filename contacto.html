@@ -50,14 +50,16 @@
           <div style="text-align: center; margin-bottom: 3.5rem;">
             <div style="display: inline-flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
               <h2 style="margin: 0;">Portal de Reclutamiento: Centinela del Norte</h2>
-              <div
-                style="background: #4ade80; color: #000; padding: 4px 12px; border-radius: 20px; font-size: 0.65rem; font-weight: 900; letter-spacing: 1px; display: flex; align-items: center; gap: 5px;">
-                <i class="fas fa-lock"></i> DATOS PROTEGIDOS
-              </div>
+              <button type="button" id="form-toggle-btn"
+                style="background: #4ade80; border: none; color: #000; padding: 6px 14px; border-radius: 20px; font-size: 0.65rem; font-weight: 900; letter-spacing: 1px; display: flex; align-items: center; gap: 5px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(74, 222, 128, 0.3);">
+                <i class="fas fa-lock"></i> <span id="toggle-text">ABRIR FORMULARIO</span>
+              </button>
             </div>
-            <p class="subtext">Complete el siguiente formulario para que un consultor táctico se ponga en contacto con
-              usted.</p>
           </div>
+
+          <div id="collapsible-form" style="max-height: 0; opacity: 0; overflow: hidden; transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);">
+            <p class="subtext" style="text-align: center; margin-bottom: 2.5rem;">Complete el siguiente formulario para que un consultor táctico se ponga en contacto con
+              usted.</p>
 
           <!-- PHP Handler Integration -->
           <form action="contact-handler.php" method="POST" class="contact-form" id="secure-form"
@@ -78,16 +80,26 @@
                   style="width: 100%; padding: 1.25rem; background: #fff; border: 1px solid var(--border); border-radius: 12px; color: var(--navy); transition: all 0.3s ease; font-weight: 500;">
               </div>
             </div>
-            <div class="form-group">
-              <label
-                style="display: block; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Tipo
-                de Requerimiento</label>
-              <select name="subject"
-                style="width: 100%; padding: 1.25rem; background: #fff; border: 1px solid var(--border); border-radius: 12px; color: var(--navy); appearance: none; cursor: pointer; font-weight: 500;">
-                <option value="Guardia de Seguridad">Guardias de Seguridad</option>
-                <option value="Supervisor de Seguridad">Supervisor de Seguridad</option>
-                <option value="Otros">Otros</option>
-              </select>
+            <div class="form-grid">
+              <div class="form-group">
+                <label
+                  style="display: block; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Tipo
+                  de Requerimiento</label>
+                <select name="subject"
+                  style="width: 100%; padding: 1.25rem; background: #fff; border: 1px solid var(--border); border-radius: 12px; color: var(--navy); appearance: none; cursor: pointer; font-weight: 500;">
+                  <option value="Guardia de Seguridad">Guardias de Seguridad</option>
+                  <option value="Supervisor de Seguridad">Supervisor de Seguridad</option>
+                  <option value="Otros">Otros</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label
+                  style="display: block; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Ciudad</label>
+                <select name="city" required
+                  style="width: 100%; padding: 1.25rem; background: #fff; border: 1px solid var(--border); border-radius: 12px; color: var(--navy); appearance: none; cursor: pointer; font-weight: 500;">
+                  <option value="Tena" selected>Tena</option>
+                </select>
+              </div>
             </div>
 
 
@@ -177,14 +189,35 @@
               <i class="fas fa-paper-plane" style="margin-right: 10px;"></i> ENVIAR SOLICITUD ESTRATÉGICA
             </button>
           </form>
+          </div> <!-- End collapsible-form -->
 
           <script>
             const btn = document.getElementById('submit-btn');
             const form = document.getElementById('secure-form');
             const privacyCheck = document.getElementById('privacy-check');
-            const messageText = document.getElementById('message-text');
-            const wordError = document.getElementById('word-count-error');
+            const toggleBtn = document.getElementById('form-toggle-btn');
+            const toggleText = document.getElementById('toggle-text');
+            const collapsibleForm = document.getElementById('collapsible-form');
             let isCaptchaVerified = false;
+
+            // Lógica de Expandir/Colapsar
+            toggleBtn.addEventListener('click', () => {
+              const isOpen = collapsibleForm.style.maxHeight !== '0px';
+
+              if (isOpen) {
+                collapsibleForm.style.maxHeight = '0px';
+                collapsibleForm.style.opacity = '0';
+                toggleText.textContent = 'ABRIR FORMULARIO';
+                toggleBtn.style.background = '#4ade80';
+                toggleBtn.style.transform = 'scale(1)';
+              } else {
+                collapsibleForm.style.maxHeight = '2000px'; // Suficiente para el contenido
+                collapsibleForm.style.opacity = '1';
+                toggleText.textContent = 'MINIMIZAR FORMULARIO';
+                toggleBtn.style.background = '#facc15'; // Color de atención al abrir
+                toggleBtn.style.transform = 'scale(1.05)';
+              }
+            });
 
             const fileInput = document.getElementById('file-input');
             const fileError = document.getElementById('file-error');
@@ -268,10 +301,12 @@
               const name = formData.get('name');
               const email = formData.get('email');
               const subject = formData.get('subject');
+              const city = formData.get('city');
 
               const text = `*Nueva Solicitud de Registro - Centinela del Norte*%0A%0A` +
                 `*Nombre Completo:* ${name}%0A` +
                 `*Email:* ${email}%0A` +
+                `*Ciudad:* ${city}%0A` +
                 `*Tipo de Requerimiento:* ${subject}%0A%0A` +
                 `_Adjunto mis documentos requeridos para el proceso._`;
 

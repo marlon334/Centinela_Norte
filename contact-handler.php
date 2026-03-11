@@ -26,6 +26,7 @@ $captcha_response = $_POST['g-recaptcha-response'] ?? '';
 $name = strip_tags(trim($_POST['name'] ?? ''));
 $email = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
 $subject_type = strip_tags(trim($_POST['subject'] ?? 'Consulta General'));
+$city = strip_tags(trim($_POST['city'] ?? 'No especificada'));
 $message_content = strip_tags(trim($_POST['message'] ?? 'Proceso de Reclutamiento'));
 
 // Validate Captcha
@@ -137,6 +138,7 @@ $email_body = "Se ha recibido una nueva solicitud de RECLUTAMIENTO.\n\n";
 $email_body .= "--------------------------------------------------\n";
 $email_body .= "Nombre Completo: $name\n";
 $email_body .= "Email: $email\n";
+$email_body .= "Ciudad: $city\n";
 $email_body .= "Postulación para: $subject_type\n";
 $email_body .= "--------------------------------------------------\n";
 $email_body .= "DOCUMENTACIÓN:\n";
